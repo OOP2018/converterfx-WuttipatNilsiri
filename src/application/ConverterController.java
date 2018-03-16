@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.FlowPane;
 /**
  * ConverterController for handle Event
  * @author Wuttipat Nilsiri
@@ -21,6 +22,7 @@ public class ConverterController {
 	ComboBox<Unit> menuBar2;
 	@FXML
 	Menu menuUnit;
+	
 	/**
 	 * JavaFX calls the initialize() method of your controller when
 	 * it creates the UI form, after the components have been created
@@ -30,6 +32,7 @@ public class ConverterController {
 	 */
 	@FXML
 	public void initialize() {
+		
 		// This is for testing
 		System.out.println("Running initialize");
 		if (menuBar1 != null) {
@@ -41,7 +44,9 @@ public class ConverterController {
 			menuBar2.getSelectionModel().select(1); // select an item to show
 		}
 	}
-	
+	/**
+	 * clear List in ComboBox and fill with Temperatures
+	 */
 	public void tempInit(){
 		menuBar1.getItems().removeAll(menuBar1.getItems());
 		menuBar2.getItems().removeAll(menuBar2.getItems());
@@ -50,7 +55,9 @@ public class ConverterController {
 		menuBar1.getSelectionModel().select(0);
 		menuBar2.getSelectionModel().select(1); 
 	}
-	
+	/**
+	 * clear List in ComboBox and fill with Lengths
+	 */
 	public void lengthInit(){
 		menuBar1.getItems().removeAll(menuBar1.getItems());
 		menuBar2.getItems().removeAll(menuBar2.getItems());
@@ -59,7 +66,9 @@ public class ConverterController {
 		menuBar1.getSelectionModel().select(0);
 		menuBar2.getSelectionModel().select(1); 
 	}
-	
+	/**
+	 * clear List in ComboBox and fill with Masses
+	 */
 	public void massInit(){
 		menuBar1.getItems().removeAll(menuBar1.getItems());
 		menuBar2.getItems().removeAll(menuBar2.getItems());
@@ -68,7 +77,9 @@ public class ConverterController {
 		menuBar1.getSelectionModel().select(0);
 		menuBar2.getSelectionModel().select(1); 
 	}
-	
+	/**
+	 * clear List in ComboBox and fill with Areas
+	 */
 	public void areaInit(){
 		menuBar1.getItems().removeAll(menuBar1.getItems());
 		menuBar2.getItems().removeAll(menuBar2.getItems());

@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="104.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConverterController">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="104.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConverterController">
    <children>
-      <FlowPane prefHeight="32.0" prefWidth="806.0">
+      <FlowPane prefHeight="32.0" prefWidth="826.0">
          <children>
-            <MenuBar prefHeight="30.0" prefWidth="807.0">
+            <MenuBar prefHeight="30.0" prefWidth="826.0">
               <menus>
                 <Menu fx:id="menuUnit" mnemonicParsing="false" text="Unit">
                   <items>
@@ -43,9 +43,9 @@
                   <Insets top="10.0" />
                </HBox.margin>
             </ComboBox>
-            <Label prefHeight="18.0" prefWidth="21.0" text=" =" wrapText="true">
+            <Label prefHeight="18.0" prefWidth="21.0" text="=" wrapText="true">
                <HBox.margin>
-                  <Insets left="5.0" right="5.0" top="15.0" />
+                  <Insets left="15.0" right="15.0" top="15.0" />
                </HBox.margin>
             </Label>
             <TextField id="TextField2" fx:id="textfield2" onKeyPressed="#handleKeyTxt2">

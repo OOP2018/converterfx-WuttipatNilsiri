@@ -12,17 +12,14 @@ public enum Area implements Unit{
 	TARANG_WA(0.25);
 	
 	/**
-	 * init value to enum 
+	 * initial value to enum 
 	 */
 	private double value;
 	Area(double value){
 		this.value= value;
 	}
 	
-	/**
-	 * get value from enum
-	 * @return value
-	 */
+	@Override
 	public double getValue(){
 		return value;
 	}

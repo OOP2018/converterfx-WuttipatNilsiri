@@ -1,5 +1,9 @@
 package application;
-
+/**
+ * 
+ * @author Wuttipat Nilsiri
+ *
+ */
 public enum Temperature implements Unit{
     
     /**
@@ -29,7 +33,14 @@ public enum Temperature implements Unit{
         public double toCelsius(double d)    { return (d * 1.8) + 32; }
         public double toFahrenheit(double d) { return d; }
         public double toKelvin(double d) { return (d * 1.8) - 459.67; }
-        public double convert(double source, Unit unit) { return ((Temperature)unit).toFahrenheit(source); }
+        public double convert(double source, Unit unit) { 
+        	try {
+        		return ((Temperature)unit).toFahrenheit(source);
+        	}catch(Exception e){
+        		System.out.println("fuck");
+        		return -1;
+        	}
+        }
         public double getValue(){
         	return 32;
         }
@@ -42,7 +53,14 @@ public enum Temperature implements Unit{
         public double toCelsius(double d) { return d + 273.15; }
         public double toFahrenheit(double d) { return (d + 459.67) / 1.8; }
         public double toKelvin(double d) { return d; }
-        public double convert(double source, Unit unit) { return ((Temperature)unit).toKelvin(source); }
+        public double convert(double source, Unit unit) { 
+        	try {
+        		return ((Temperature)unit).toKelvin(source);
+        	}catch(Exception e){
+        		System.out.println("fuck");
+        		return -1;
+        	}
+        }
         public double getValue(){
         	return 273.15;
         }
@@ -65,7 +83,7 @@ public enum Temperature implements Unit{
     }
     
     /**
-     * Equivalent to
+     * Equivalent to celsius
      * @param d the temperature in celsius
      * @return the converted temperature
      */
@@ -74,7 +92,7 @@ public enum Temperature implements Unit{
     }
     
     /**
-     * Equivalent to
+     * Equivalent to fahrenheit
      * @param d the temperature in fahrenheit
      * @return the converted temperature
      */
@@ -83,7 +101,7 @@ public enum Temperature implements Unit{
     }
     
     /**
-     * 
+     * Equivalent to kelvin
      * @param d the temperature in kelvin
      * @return the converted temperature
      */

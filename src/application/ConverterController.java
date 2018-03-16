@@ -11,15 +11,16 @@ import javafx.scene.input.KeyEvent;
  *
  */
 public class ConverterController {
-	
 	@FXML
 	TextField textfield1;
 	@FXML
 	TextField textfield2;
 	@FXML
-	ComboBox<Length> menuBar1;
+	ComboBox<Unit> menuBar1;
 	@FXML
-	ComboBox<Length> menuBar2;
+	ComboBox<Unit> menuBar2;
+	@FXML
+	Menu menuUnit;
 	/**
 	 * JavaFX calls the initialize() method of your controller when
 	 * it creates the UI form, after the components have been created
@@ -39,6 +40,42 @@ public class ConverterController {
 			menuBar2.getItems().addAll( Length.values() );
 			menuBar2.getSelectionModel().select(1); // select an item to show
 		}
+	}
+	
+	public void tempInit(){
+		menuBar1.getItems().removeAll(menuBar1.getItems());
+		menuBar2.getItems().removeAll(menuBar2.getItems());
+		menuBar1.getItems().addAll(Temperature.values());
+		menuBar2.getItems().addAll(Temperature.values());
+		menuBar1.getSelectionModel().select(0);
+		menuBar2.getSelectionModel().select(1); 
+	}
+	
+	public void lengthInit(){
+		menuBar1.getItems().removeAll(menuBar1.getItems());
+		menuBar2.getItems().removeAll(menuBar2.getItems());
+		menuBar1.getItems().addAll(Length.values());
+		menuBar2.getItems().addAll(Length.values());
+		menuBar1.getSelectionModel().select(0);
+		menuBar2.getSelectionModel().select(1); 
+	}
+	
+	public void massInit(){
+		menuBar1.getItems().removeAll(menuBar1.getItems());
+		menuBar2.getItems().removeAll(menuBar2.getItems());
+		menuBar1.getItems().addAll(Mass.values());
+		menuBar2.getItems().addAll(Mass.values());
+		menuBar1.getSelectionModel().select(0);
+		menuBar2.getSelectionModel().select(1); 
+	}
+	
+	public void areaInit(){
+		menuBar1.getItems().removeAll(menuBar1.getItems());
+		menuBar2.getItems().removeAll(menuBar2.getItems());
+		menuBar1.getItems().addAll(Area.values());
+		menuBar2.getItems().addAll(Area.values());
+		menuBar1.getSelectionModel().select(0);
+		menuBar2.getSelectionModel().select(1); 
 	}
 	
 	/**
@@ -91,8 +128,8 @@ public class ConverterController {
 	public void handleConvert(){
 		textfield1.setStyle("-fx-border-color: white;");
 		textfield2.setStyle("-fx-border-color: white;");
-		Length baseLength = menuBar1.getValue();
-		Length toConvertLength = menuBar2.getValue();
+//		Length baseLength = menuBar1.getValue();
+//		Length toConvertLength = menuBar2.getValue();
 		
 		double value1;
 		double value2;
@@ -101,12 +138,14 @@ public class ConverterController {
 		try{
 			//try convert left text field if it work convert to right if it have error check the right one
 			value1 = Double.parseDouble(textfield1.getText().trim());
-			ans = value1*baseLength.getValue()/toConvertLength.getValue();
+			ans = menuBar1.getValue().convert(value1, menuBar2.getValue());
+//			ans = value1*baseLength.getValue()/toConvertLength.getValue();
 			textfield2.setText(String.valueOf(ans));
 		}catch (NumberFormatException e1){
 			try{
 				value2 = Double.parseDouble(textfield2.getText().trim());
-				ans = value2/baseLength.getValue()*toConvertLength.getValue();
+				ans = menuBar2.getValue().convert(value2, menuBar1.getValue());
+//				ans = value2/baseLength.getValue()*toConvertLength.getValue();
 				textfield1.setText(String.valueOf(ans));
 			//if right one got error throw error
 			}catch (NumberFormatException e2){

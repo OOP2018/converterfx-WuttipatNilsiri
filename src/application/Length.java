@@ -4,7 +4,7 @@ package application;
  * @author Wuttipat Nilsiri
  *
  */
-public enum Length {
+public enum Length implements Unit{
 	
 	METER(1.0000),
 	CENTIMETER(0.0100),
@@ -31,5 +31,16 @@ public enum Length {
 	 */
 	public double  getValue(){
 		return value;
+	}
+	
+	public double convert(double source, Unit unit){
+		try {
+			Length unitcast = (Length) unit;
+			return this.getValue()*source/unitcast.getValue();
+		}
+		catch (Exception e){
+			System.out.println("fuck");
+			return -1;
+		}
 	}
 }

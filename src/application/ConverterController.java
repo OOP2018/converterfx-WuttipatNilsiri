@@ -1,5 +1,6 @@
 package application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
@@ -12,6 +13,8 @@ import javafx.scene.layout.FlowPane;
  *
  */
 public class ConverterController {
+	
+	UnitFactory uf =  UnitFactory.getFactory();
 	@FXML
 	TextField textfield1;
 	@FXML
@@ -22,6 +25,24 @@ public class ConverterController {
 	ComboBox<Unit> menuBar2;
 	@FXML
 	Menu menuUnit;
+	
+	@FXML
+	MenuItem length;
+	@FXML
+	MenuItem mass;
+	@FXML
+	MenuItem area;
+	@FXML
+	MenuItem temp;
+	
+	private void setBox(ComboBox<Unit> ubox, UnitType u) {
+		if (ubox != null) {
+			ubox.getItems().clear();
+			ubox.getItems().addAll( uf.getUnits(u) );
+			ubox.getSelectionModel().select(0);
+		}
+	}
+	
 	
 	/**
 	 * JavaFX calls the initialize() method of your controller when
@@ -35,60 +56,68 @@ public class ConverterController {
 		
 		// This is for testing
 		System.out.println("Running initialize");
-		if (menuBar1 != null) {
-			menuBar1.getItems().addAll( Length.values() );
-			menuBar1.getSelectionModel().select(0); // select an item to show
-		}
-		if (menuBar2 != null) {
-			menuBar2.getItems().addAll( Length.values() );
-			menuBar2.getSelectionModel().select(1); // select an item to show
-		}
+		setBox(menuBar1,UnitType.LENGTH);
+		setBox(menuBar2,UnitType.LENGTH);
+		
+		length.setOnAction(new EventListener(UnitType.LENGTH));
+		mass.setOnAction(new EventListener(UnitType.MASS));
+		area.setOnAction(new EventListener(UnitType.AREA));
+		temp.setOnAction(new EventListener(UnitType.TEMPERATURE));
+		
+//		if (menuBar1 != null) {
+//			menuBar1.getItems().addAll( Length.values() );
+//			menuBar1.getSelectionModel().select(0); // select an item to show
+//		}
+//		if (menuBar2 != null) {
+//			menuBar2.getItems().addAll( Length.values() );
+//			menuBar2.getSelectionModel().select(1); // select an item to show
+//		}
 	}
 	/**
 	 * clear List in ComboBox and fill with Temperatures
 	 */
-	public void tempInit(){
-		menuBar1.getItems().removeAll(menuBar1.getItems());
-		menuBar2.getItems().removeAll(menuBar2.getItems());
-		menuBar1.getItems().addAll(Temperature.values());
-		menuBar2.getItems().addAll(Temperature.values());
-		menuBar1.getSelectionModel().select(0);
-		menuBar2.getSelectionModel().select(1); 
-	}
-	/**
-	 * clear List in ComboBox and fill with Lengths
-	 */
-	public void lengthInit(){
-		menuBar1.getItems().removeAll(menuBar1.getItems());
-		menuBar2.getItems().removeAll(menuBar2.getItems());
-		menuBar1.getItems().addAll(Length.values());
-		menuBar2.getItems().addAll(Length.values());
-		menuBar1.getSelectionModel().select(0);
-		menuBar2.getSelectionModel().select(1); 
-	}
-	/**
-	 * clear List in ComboBox and fill with Masses
-	 */
-	public void massInit(){
-		menuBar1.getItems().removeAll(menuBar1.getItems());
-		menuBar2.getItems().removeAll(menuBar2.getItems());
-		menuBar1.getItems().addAll(Mass.values());
-		menuBar2.getItems().addAll(Mass.values());
-		menuBar1.getSelectionModel().select(0);
-		menuBar2.getSelectionModel().select(1); 
-	}
-	/**
-	 * clear List in ComboBox and fill with Areas
-	 */
-	public void areaInit(){
-		menuBar1.getItems().removeAll(menuBar1.getItems());
-		menuBar2.getItems().removeAll(menuBar2.getItems());
-		menuBar1.getItems().addAll(Area.values());
-		menuBar2.getItems().addAll(Area.values());
-		menuBar1.getSelectionModel().select(0);
-		menuBar2.getSelectionModel().select(1); 
-	}
-	
+//	public void tempInit(){
+//		menuBar1.getItems().removeAll(menuBar1.getItems());
+//		menuBar2.getItems().removeAll(menuBar2.getItems());
+//		menuBar1.getItems().addAll(Temperature.values());
+//		menuBar2.getItems().addAll(Temperature.values());
+//		menuBar1.getSelectionModel().select(0);
+//		menuBar2.getSelectionModel().select(1); 
+//	}
+//	/**
+//	 * clear List in ComboBox and fill with Lengths
+//	 */
+//	public void lengthInit(){
+//		menuBar1.getItems().removeAll(menuBar1.getItems());
+//		menuBar2.getItems().removeAll(menuBar2.getItems());
+//		menuBar1.getItems().addAll(Length.values());
+//		menuBar2.getItems().addAll(Length.values());
+//		menuBar1.getSelectionModel().select(0);
+//		menuBar2.getSelectionModel().select(1); 
+//	}
+//	/**
+//	 * clear List in ComboBox and fill with Masses
+//	 */
+//	public void massInit(){
+//		menuBar1.getItems().removeAll(menuBar1.getItems());
+//		menuBar2.getItems().removeAll(menuBar2.getItems());
+//		menuBar1.getItems().addAll(Mass.values());
+//		menuBar2.getItems().addAll(Mass.values());
+//		menuBar1.getSelectionModel().select(0);
+//		menuBar2.getSelectionModel().select(1); 
+//	}
+//	/**
+//	 * clear List in ComboBox and fill with Areas
+//	 */
+//	public void areaInit(){
+//		menuBar1.getItems().removeAll(menuBar1.getItems());
+//		menuBar2.getItems().removeAll(menuBar2.getItems());
+//		menuBar1.getItems().addAll(Area.values());
+//		menuBar2.getItems().addAll(Area.values());
+//		menuBar1.getSelectionModel().select(0);
+//		menuBar2.getSelectionModel().select(1); 
+//	}
+//	
 	/**
 	 * handle if Key that press is ENTER
 	 * @param ke
@@ -180,4 +209,20 @@ public class ConverterController {
 		textfield2.setText("");
 		textfield2.setStyle("-fx-border-color: white;");
 	}
+	class EventListener implements EventHandler<ActionEvent> {
+		
+		
+		private UnitType u;
+		EventListener(UnitType u){
+			this.u = u;
+		}
+		@Override
+		public void handle(ActionEvent arg0) {
+			setBox(menuBar1,u);
+			setBox(menuBar2,u);
+		}
+		
+	}
 }
+
+

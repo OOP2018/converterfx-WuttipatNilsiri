@@ -6,12 +6,12 @@ package application;
  */
 public enum Mass implements Unit{
 	
-	litre(1),
-	Cubic_meter(0.001),
-	Milliliters(1000),
+	LITRE(1),
+	CUBIC_METER(0.001),
+	MILLILILIT(1000),
 	
-	pound(2.20),
-	Gallon(0.264172052);
+	POUND(2.20),
+	GALLON(0.264172052);
 	
 	private double value;
 	

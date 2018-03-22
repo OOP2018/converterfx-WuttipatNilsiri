@@ -26,14 +26,16 @@ public class ConverterController {
 	@FXML
 	Menu menuUnit;
 	
-	@FXML
-	MenuItem length;
-	@FXML
-	MenuItem mass;
-	@FXML
-	MenuItem area;
-	@FXML
-	MenuItem temp;
+//	@FXML
+//	MenuItem length;
+//	@FXML
+//	MenuItem mass;
+//	@FXML
+//	MenuItem area;
+//	@FXML
+//	MenuItem temp;
+	
+	
 	
 	private void setBox(ComboBox<Unit> ubox, UnitType u) {
 		if (ubox != null) {
@@ -53,16 +55,23 @@ public class ConverterController {
 	 */
 	@FXML
 	public void initialize() {
-		
+	
 		// This is for testing
 		System.out.println("Running initialize");
 		setBox(menuBar1,UnitType.LENGTH);
 		setBox(menuBar2,UnitType.LENGTH);
 		
-		length.setOnAction(new EventListener(UnitType.LENGTH));
-		mass.setOnAction(new EventListener(UnitType.MASS));
-		area.setOnAction(new EventListener(UnitType.AREA));
-		temp.setOnAction(new EventListener(UnitType.TEMPERATURE));
+		for (UnitType ut : UnitType.values()) {
+			MenuItem currentItem = new MenuItem(ut.toString());
+			currentItem.setOnAction(new EventListener(ut));
+			menuUnit.getItems().add(currentItem);
+		}
+		menuUnit.getItems().add(new MenuItem("exit"));
+		
+//		length.setOnAction(new EventListener(UnitType.LENGTH));
+//		mass.setOnAction(new EventListener(UnitType.MASS));
+//		area.setOnAction(new EventListener(UnitType.AREA));
+//		temp.setOnAction(new EventListener(UnitType.TEMPERATURE));
 		
 //		if (menuBar1 != null) {
 //			menuBar1.getItems().addAll( Length.values() );

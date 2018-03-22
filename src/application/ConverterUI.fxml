@@ -20,11 +20,8 @@
               <menus>
                 <Menu fx:id="menuUnit" mnemonicParsing="false" text="Unit">
                   <items>
-                        <MenuItem fx:id="length" mnemonicParsing="false" text="Length" />
-                        <MenuItem fx:id="area" mnemonicParsing="false" text="Area" />
-                        <MenuItem fx:id="mass" mnemonicParsing="false" text="Mass" />
-                        <MenuItem fx:id="temp" mnemonicParsing="false" text="Temperature" />
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                        
+                    
                   </items>
                 </Menu>
               </menus>

@@ -1,8 +1,8 @@
 package application;
 
 public class UnitFactory {
-	static UnitFactory uf = new UnitFactory();
-	UnitFactory(){
+	private static UnitFactory uf = new UnitFactory();
+	private UnitFactory(){
 		
 	}
 	/**
